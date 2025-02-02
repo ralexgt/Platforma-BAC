@@ -1,0 +1,26 @@
+# Logs
+./platforma-romana/logs
+./platforma-romana/*.log
+./platforma-romana/npm-debug.log*
+./platforma-romana/yarn-debug.log*
+./platforma-romana/yarn-error.log*
+./platforma-romana/pnpm-debug.log*
+./platforma-romana/lerna-debug.log*
+
+./platforma-romana/node_modules
+./platforma-romana/dist
+./platforma-romana/dist-ssr
+./platforma-romana/*.local
+
+# Editor directories and files
+./platforma-romana/.vscode/*
+./platforma-romana/!.vscode/extensions.json
+./platforma-romana/.idea
+./platforma-romana/.DS_Store
+./platforma-romana/*.suo
+./platforma-romana/*.ntvs*
+./platforma-romana/*.njsproj
+./platforma-romana/*.sln
+./platforma-romana/*.sw?
+
+./server/go.sum
