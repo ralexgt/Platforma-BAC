@@ -1,4 +1,4 @@
-import { Lesson, Question, QuickQuestion, Test } from "../props/Props.tsx"
+import { Lesson, Question, QuickQuestion, Test, UserLeaderboard } from "../props/Props.tsx"
 
 // Function to save JWT token to a cookie
 export function setCookie(name: string, value: string, expirationInMinutes: number = 300) {
@@ -99,6 +99,47 @@ export async function fetchTest(id: string): Promise<Test> {
 
 export async function fetchTestQuestions(id: string): Promise<Question[]> {
     const response = await fetch(`http://127.0.0.1:8000/public/getQuestions/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    
+    return response.json();
+}
+
+export async function fetchUpdateGold(email: string, gold: number) {
+    const response = await fetch(`http://127.0.0.1:8000/public/updateGold`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({
+            email: email,
+            gold: gold,
+        })
+    })
+
+    return response.json();        
+}
+
+export async function fetchUpdateExperience(email: string, experience: number) {
+    const response = await fetch(`http://127.0.0.1:8000/public/updateExperience`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({
+            email: email,
+            experience: experience,
+        })
+    })
+
+    return response.json();        
+}
+
+export async function fetchLeaderboard(): Promise<UserLeaderboard[]> {
+    const response = await fetch(`http://127.0.0.1:8000/public/leaderboard`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',

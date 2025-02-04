@@ -65,6 +65,16 @@ type PostQuickQuestionRequest struct {
 	Correct   string
 }
 
+type GoldUpdate struct {
+	Email string `json:"email"`
+	Gold  int64  `json:"gold"`
+}
+
+type ExperienceUpdate struct {
+	Email      string `json:"email"`
+	Experience int64  `json:"experience"`
+}
+
 func main() {
 	// Initialize a new Fiber app
 	app := fiber.New()
@@ -72,7 +82,7 @@ func main() {
 	// Allow CORS
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*", // Allow requests only from your frontend's URL
-		AllowMethods: "GET,POST,DELETE,HEAD,OPTIONS",
+		AllowMethods: "GET,POST,DELETE,PUT,HEAD,OPTIONS",
 	}))
 
 	engine, err := data.CreateDBEngine()
@@ -285,7 +295,67 @@ func main() {
 			return c.JSON(fiber.Map{"error": "Id-ul nu exista in baza de date"})
 		}
 
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{"email": user.Email, "name": user.Name, "admin": user.Admin})
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{"email": user.Email, "name": user.Name, "admin": user.Admin, "experience": user.Experience, "gold": user.Gold})
+	})
+
+	public.Put("/updateGold", func(c *fiber.Ctx) error {
+		log.Println("Request received at public/updateGold")
+		var req GoldUpdate
+		if err := c.BodyParser(&req); err != nil {
+			return c.Status(400).JSON(fiber.Map{"error": "Invalid input"})
+		}
+
+		user := data.User{}
+		has, err := engine.Where("email = ?", req.Email).Get(&user)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Database error"})
+		}
+		if !has {
+			return c.Status(404).JSON(fiber.Map{"error": "User not found"})
+		}
+
+		user.Gold = user.Gold + req.Gold
+		_, err = engine.ID(user.Id).Cols("gold").Update(&user)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Update failed"})
+		}
+
+		return c.JSON(fiber.Map{"message": "Gold updated", "gold": user.Gold})
+	})
+
+	public.Put("/updateExperience", func(c *fiber.Ctx) error {
+		log.Println("Request received at public/updateExperience")
+		var req ExperienceUpdate
+		if err := c.BodyParser(&req); err != nil {
+			return c.Status(400).JSON(fiber.Map{"error": "Invalid input"})
+		}
+
+		user := data.User{}
+		has, err := engine.Where("email = ?", req.Email).Get(&user)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Database error"})
+		}
+		if !has {
+			return c.Status(404).JSON(fiber.Map{"error": "User not found"})
+		}
+
+		user.Experience = user.Experience + req.Experience
+		_, err = engine.ID(user.Id).Cols("experience").Update(&user)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Update failed"})
+		}
+
+		return c.JSON(fiber.Map{"message": "Experience updated", "experience": user.Experience})
+	})
+
+	public.Get("/leaderboard", func(c *fiber.Ctx) error {
+		log.Println("Request received at public/leaderboard")
+		var users []data.User
+		err := engine.OrderBy("experience DESC").Find(&users)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Database error"})
+		}
+		return c.JSON(users)
 	})
 
 	public.Delete("/delete/:id", func(c *fiber.Ctx) error {
@@ -436,11 +506,13 @@ func main() {
 		uuid := GenerateUUIDv5(req.Name, req.Email)
 
 		user := &data.User{
-			Id:       uuid.String(),
-			Name:     req.Name,
-			Email:    req.Email,
-			Password: string(hash),
-			Admin:    0,
+			Id:         uuid.String(),
+			Name:       req.Name,
+			Email:      req.Email,
+			Password:   string(hash),
+			Admin:      0,
+			Experience: 0,
+			Gold:       0,
 		}
 
 		_, err = engine.Insert(user)

@@ -28,13 +28,14 @@ const Navbar = () => {
   
   return (
     <nav className="navbar">
-      <Link to="/profile" id="to-profile">
+      <Link to={`/profile/${username}`} id="to-profile">
           <img id="profile-pic" src={profilePic} alt="default_profile_picture" />
       </Link>
-      {username ? <Link to="/profile" id="username-link"> {username} </Link> : <p> Guest </p> }
+      <Link to={`/profile/${username}`} id="username-link"> {username ? username : "Guest"} </Link>
       <Link to="/"> <h1> Platforma BAC Romana </h1> </Link>
       <div className="links">
         <Link to="/"> Home </Link>
+        <Link to="/leaderboard"> Leaderboard </Link>
         {(userALevel >= 1) && <Link to="/create"> Create </Link>}
         {loggedIn && <Link to="/logout"> Log out </Link>}
         {!loggedIn && <Link to="/login"> Log in </Link>}

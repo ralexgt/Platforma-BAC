@@ -10,6 +10,8 @@ import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login.tsx";
 import Signup from "./pages/Signup.tsx";
 import Logout from "./pages/Logout.tsx";
+import UserProfile from "./pages/UserProfile.tsx";
+import Leaderboard from "./pages/Leaderboard.tsx";
 import NeedToBeLoggedIn from "./pages/NeedToBeLoggedIn.tsx";
 
 function App() {
@@ -24,11 +26,13 @@ function App() {
             <Route path="/createLesson" element={<CreateLesson/>} />
             <Route path="/createTest" element={<CreateTest/>} />
             <Route path="/lessons/:id" element={<LessonDetailed/>} />
+            <Route path="/test/:id" element={<TestDetailed/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<Signup/>} />
+            <Route path="/profile/:id" element={<UserProfile/>} />
+            <Route path="/leaderboard" element={<Leaderboard/>} />
             <Route path="/logout" element={<Logout/>} />
             <Route path="/not-allowed" element={<NeedToBeLoggedIn/>} />
-            <Route path="/test/:id" element={<TestDetailed/>} />
             <Route path="*" element={<NotFound/>} />
           </Routes> 
         </div>

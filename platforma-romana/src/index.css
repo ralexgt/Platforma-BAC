@@ -35,6 +35,9 @@
 
 .navbar a:hover {
   color: #f1356d;
+  background: rgba(211, 211, 211, 0.4);
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
 #username-link {
@@ -117,6 +120,10 @@
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
+  padding: 40px;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .create label {
@@ -146,8 +153,13 @@
   color: #fff;
   border: 0;
   padding: 8px;
+  margin-top: 20px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.create p {
+  margin-top: 20px;
 }
 
 /* create new lesson form */
@@ -356,6 +368,151 @@
   color: red;
 }
 
+.next-question-test-button {
+  background: #f1356d;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-right: 80%;
+  padding: 8px 16px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.next-question-test-button:hover {
+  background-color: #e596f2;
+}
+
+.finish-test-button {
+  background: #f1356d;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-right: 70%;
+  padding: 8px 16px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.finish-test-button:hover {
+  background-color: #e596f2;
+}
+
+.question-component {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.question {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.answers label {
+  display: block;
+  margin: 10px 0;
+}
+
+.next-button {
+  background-color: pink;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quiz-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.quiz-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.quiz-button:disabled,
+.quiz-button[disabled] {
+  background: #ccc !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.quiz-button.fifty-fifty {
+  background-color: #4caf50;
+  color: white;
+}
+
+.quiz-button.hint {
+  background-color: #ff9800;
+  color: white;
+}
+
+.quiz-button.reveal {
+  background-color: #2196f3;
+  color: white;
+}
+
+.quiz-button:hover {
+  opacity: 0.8;
+}
+
+.popup {
+  position: fixed;
+  top: 720px;
+  left: 15%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 0, 0, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeOut 1.5s ease-in-out;
+}
+
+.correct-answer {
+  background-color: #c8e6c9;
+  font-weight: bold;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  40% {
+    opacity: 0.6;
+  }
+
+  60% {
+    opacity: 0.4;
+  }
+
+  80% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Test Box */
 
 /* Create */
@@ -466,3 +623,190 @@
   cursor: pointer;
   margin-top: 15px;
 }
+
+/* Create test */
+
+/* Profile page */
+.profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-card {
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+}
+
+.username {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.email {
+  font-size: 14px;
+  color: #666;
+}
+
+.stats {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.stats p {
+  margin: 5px 0;
+}
+
+.achievements-section {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.achievements-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.achievements-section img {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
+.badge-container {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-description {
+  visibility: hidden;
+  width: 200px;
+  background-color: #f9f9f9;
+  color: #000;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -100px;
+  /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.badge-container:hover .badge-description {
+  visibility: visible;
+  opacity: 0.8;
+}
+
+.edit-profile {
+  display: flex;
+  margin-top: 20px;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile .edit-button,
+.change-pass-button {
+  background: #f1356d;
+  color: white;
+  padding: 8px 12px;
+  margin-left: 15px;
+  margin-right: 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Profile page */
+
+
+/* Leaderboard page */
+.leaderboard-container {
+  width: 70%;
+  margin: 20px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+  background-color: #f4f4f4;
+}
+
+.leaderboard-container h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 15px;
+}
+
+.leaderboard-table {
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+  background: #e9e1e1;
+  color: #f1356d;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.leaderboard-table tr:hover {
+  background: #f1f1f1;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  background: #f1356d;
+  color: white;
+  padding: 8px 12px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Leaderboard page */

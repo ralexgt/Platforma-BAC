@@ -8,11 +8,13 @@ import (
 )
 
 type User struct {
-	Id       string `xorm:"pk"`
-	Name     string
-	Email    string
-	Password string `json:"-"`
-	Admin    int8
+	Id         string `xorm:"pk"`
+	Name       string
+	Email      string
+	Password   string `json:"-"`
+	Admin      int8
+	Experience int64
+	Gold       int64
 }
 
 type Lesson struct {

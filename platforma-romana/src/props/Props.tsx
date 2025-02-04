@@ -28,6 +28,7 @@ export type QuickQuestion = {
 
 export type QuickQuestionProps = {
   quizQuestions: QuickQuestion[];
+  user: string;
 }
 
 export type Test = {
@@ -46,4 +47,13 @@ export type Question = {
 	Answer4:   string,
 	Correct:   string,
 	Hint: string,
+}
+
+export type UserLeaderboard = {
+  Id: string,
+  Name: string,
+  Email: string,
+  Admin: number,
+  Experience: number,
+  Gold: number,
 }

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { QuickQuestion, QuickQuestionProps } from "../props/Props";
+import { fetchUpdateExperience, fetchUpdateGold } from "../functions/useApi";
 
-const QuizBox: React.FC<QuickQuestionProps> = ({quizQuestions}) => {
+const QuizBox: React.FC<QuickQuestionProps> = ({quizQuestions, user}) => {
   const [currentQuestion, setCurrentQuestion] = useState<QuickQuestion>();
   const [currentAnswers, setCurrentAnswers] = useState<string[]>();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>();
@@ -12,6 +13,10 @@ const QuizBox: React.FC<QuickQuestionProps> = ({quizQuestions}) => {
       if (currentAnswers && currentQuestion) {
         if (selectedAnswer){
           setIsCorrect(selectedAnswer == currentQuestion.Correct);
+        }
+        if (selectedAnswer == currentQuestion.Correct) {
+          fetchUpdateGold(user, 5);
+          fetchUpdateExperience(user, 50);
         }
       }
     }

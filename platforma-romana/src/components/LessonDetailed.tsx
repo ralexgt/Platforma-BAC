@@ -10,6 +10,7 @@ const LessonDetailed = () => {
   
   const [loggedIn, setLoggedIn] = useState(getCookie("token") ? "true" : "")
   const [userALevel, setUserALevel] = useState(0);
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
 
   const [lessonTitle, setLessonTitle] = useState("");
@@ -43,6 +44,7 @@ const LessonDetailed = () => {
     async function getUser() {
       const user = await fetchUser(getCookie("user"));
       setUserALevel(user.admin);
+      setUserEmail(user.email);
     }
 
     if (getCookie("user") && getCookie("token")) {
@@ -75,7 +77,7 @@ const LessonDetailed = () => {
         </div>
         { userALevel > 0 && <button className="delete-button" onClick={handleDelete}> Șterge lecția </button> }
       </article>
-      {quizQuestions && <QuizBox quizQuestions={quizQuestions}/> }
+      {quizQuestions && <QuizBox quizQuestions={quizQuestions} user={userEmail}/> }
     </div>
   );
 }
