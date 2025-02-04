@@ -482,6 +482,21 @@
   animation: fadeOut 1.5s ease-in-out;
 }
 
+.popup-green {
+  position: fixed;
+  top: 10px;
+  left: 90%;
+  transform: translateX(-50%);
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeOut 2s ease-in-out;
+}
+
 .correct-answer {
   background-color: #c8e6c9;
   font-weight: bold;
