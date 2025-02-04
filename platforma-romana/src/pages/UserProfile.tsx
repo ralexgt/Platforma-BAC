@@ -4,6 +4,7 @@ import profilePic from "../assets/profile_avatar.jpg";
 import badgeMoney from "../assets/money.png";
 import badgeWizard from "../assets/wand.png";
 import badgeModerator from "../assets/shield.png";
+import badgeNewUser from "../assets/book.png";
 import { useNavigate } from "react-router-dom";
 
 
@@ -52,6 +53,14 @@ const UserProfile = () => {
       <div className="achievements-section">
         <h3>Achievements</h3>
         <div className="badge-container">
+          {<img src={badgeNewUser} alt="Badge new user" /> }
+          <span className="badge-description">Nou venit</span>
+        </div>
+        <div className="badge-container">
+          {userALevel > 0 && <img src={badgeModerator} alt="Badge moderator" /> }
+          <span className="badge-description">Moderator</span>
+        </div>
+        <div className="badge-container">
           {userGold >= 100 && <img src={badgeMoney} alt="Badge gold > 100" /> }
           <span className="badge-description">Spiriduș</span>
         </div>
@@ -59,16 +68,6 @@ const UserProfile = () => {
           {userExperience >= 5200 && <img src={badgeWizard} alt="Badge experience > 5200" /> }
           <span className="badge-description">Vrăjitor cultivat</span>
         </div>
-        <div className="badge-container">
-          {userALevel > 0 && <img src={badgeModerator} alt="Badge moderator" /> }
-          <span className="badge-description">Moderator</span>
-        </div>
-      </div>
-
-      <div className="edit-profile">
-        <button className="edit-button"> Edit profile </button>
-        <button className="change-pass-button"> Change password </button>
-        <p> To do </p>
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ const Signup = () => {
       <h2> Sign up </h2>
       {error && <p> {error} </p>}
       <form onSubmit={handleSubmit}>
-        <label> Name: </label>
+        <label> Nume: </label>
         <input
           type="text"
           required
@@ -71,14 +71,14 @@ const Signup = () => {
         />
         <label> Email: </label>
         <input
-          type="text"
+          type="email"
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <label> Password: </label>
+        <label> Parola: </label>
         <input
-          type="text"
+          type="password"
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}

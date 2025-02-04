@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
 import { fetchLessonDetails, fetchQuickQuestions, fetchUser, getCookie } from "../functions/useApi.tsx";
 import QuizBox from "./QuizBox.tsx";
@@ -15,6 +16,7 @@ const LessonDetailed = () => {
 
   const [lessonTitle, setLessonTitle] = useState("");
   const [lessonSubject, setLessonSubject] = useState("");
+  const [lessonContent, setLessonContet] = useState("");
   const [lessonParagraphs, setLessonParagraphs] = useState([""]);
   const [quizQuestions, setQuizQuestions] = useState<QuickQuestion[]>([])
   
@@ -34,6 +36,7 @@ const LessonDetailed = () => {
       if (id) {
         const response = await fetchLessonDetails(id)
         setLessonTitle(response.title);
+        setLessonContet(response.content);
         setLessonParagraphs(response.content.split("\n\n"));        
         setLessonSubject(response.subject);
       }
@@ -68,12 +71,10 @@ const LessonDetailed = () => {
       <article>
         <h2> {lessonTitle} </h2>
         <p> {lessonSubject} </p>
-        <div className="lesson-content">
-          {
-            lessonParagraphs.map((paragraph: string) => (
-              <p key={Math.floor(Math.random() * 3000) + 100}> {paragraph} </p>
-            ))
-          }
+        <div className="lesson-content"> 
+        <ReactMarkdown>
+          {lessonContent}
+        </ReactMarkdown>
         </div>
         { userALevel > 0 && <button className="delete-button" onClick={handleDelete}> Șterge lecția </button> }
       </article>

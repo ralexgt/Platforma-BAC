@@ -68,9 +68,9 @@ const Login = () => {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <label> Password: </label>
+        <label> Parola: </label>
         <input
-          type="text"
+          type="password"
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
@@ -79,8 +79,8 @@ const Login = () => {
         { isPending && <button disabled> Logging in... </button> }
       </form>
       <div>
-        <p> Nu ai un cont? Inregistreaza-te aici: </p>
-        <Link to="/signup"> Sign up </Link>
+        <p> Nu ai un cont? Înregistrează-te aici: </p>
+        <Link to="/signup"> Înregistrează-te </Link>
       </div>  
     </div>
   );
