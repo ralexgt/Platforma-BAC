@@ -48,6 +48,7 @@ const Signup = () => {
             navigate("/login");
         } else {
             setIsPending(false);
+            setError("Emailul a fost deja folosit")
             navigate("/signup");
         }
     } catch (error) {

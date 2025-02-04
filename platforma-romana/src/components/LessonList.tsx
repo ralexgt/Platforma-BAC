@@ -15,7 +15,7 @@ const LessonList: React.FC<LessonListProps> = ({lessons, title}) => {
         v
       </button>
     
-      { toggleLessons && lessons.map((lesson: Lesson) => (
+      { !toggleLessons && lessons.map((lesson: Lesson) => (
           <div className="lesson-preview" key={lesson.Id}>
             <Link to={`/lessons/${lesson.Id}`} >
               <h2> { lesson.Title } </h2>

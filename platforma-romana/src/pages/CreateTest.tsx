@@ -162,7 +162,7 @@ const CreateTest = () => {
             <option value="">  </option>
             {
               allTests?.map((test, index) => (
-                <option key={index} value={test.Title}> {test.Title} </option>
+                <option key={index} value={test.Id}> {test.Id} </option>
               ))
             }
           </select>  

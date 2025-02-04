@@ -113,7 +113,7 @@ const TestDetailed = () => {
 
   const handleFinish = async () => {
     if (questions![Number(getCookie(`started-${id}`))].Correct === selectedAnswer) {
-      if (corrects + 1 >= 0.7 * questions!.length) {
+      if (corrects + 1 >= Math.floor(0.7 * questions!.length)) {
         setCookie(`passed-${id}`, `${corrects + 1}`, 60);
         await fetchUpdateExperience(userEmail, (corrects+1) * 50);
         await fetchUpdateGold(userEmail, (corrects+1) * 20);
@@ -121,7 +121,7 @@ const TestDetailed = () => {
         setCookie(`failed-${id}`, `${corrects + 1}`, 60);
       }
     } else {
-      if (corrects >= 0.7 * questions!.length) {
+      if (corrects >= Math.floor(0.7 * questions!.length)) {
         setCookie(`passed-${id}`, `${corrects}`, 60);
       } else {
         setCookie(`failed-${id}`, `${corrects}`, 60);
