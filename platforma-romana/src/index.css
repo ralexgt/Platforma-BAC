@@ -57,19 +57,23 @@
 
 /* content of the app */
 
-/* blog previews / list */
-.blog-preview {
+/* lesson previews / list */
+.lesson-list {
+  margin-bottom: 60px;
+}
+
+.lesson-preview {
   padding: 10px 16px;
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-.blog-preview:hover {
+.lesson-preview:hover {
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.blog-preview h2 {
+.lesson-preview h2 {
   font-size: 20px;
   display: inline-block;
   padding-right: 10px;
@@ -77,30 +81,28 @@
   margin-bottom: 8px;
 }
 
-.blog-preview a {
+.lesson-preview a {
   text-decoration: none;
 }
 
 .section-title {
   display: inline-block;
+  vertical-align: middle;
   padding-right: 10px;
 }
 
 .lessons-toggle-btn {
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-color: #fff;
-  border: 2px solid #ccc;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: bold;
+  background-color: rgba(118, 114, 113, 0.6);
+  border: none;
+  font-weight: 600;
+  box-shadow: 0px 0px 0px 3px rgba(20, 20, 20, 0.253);
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition-duration: 0.3s;
 }
 
 .lessons-toggle-btn:hover {
@@ -108,18 +110,9 @@
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-.lessons-toggle-btn:active {
-  transform: scale(0.95);
-}
+/* lesson previews / list */
 
-.lessons-toggle-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-}
-
-/* blog previews / list */
-
-/* create new blog form */
+/* create new lesson form */
 .create {
   max-width: 400px;
   margin: 0 auto;
@@ -157,12 +150,13 @@
   cursor: pointer;
 }
 
-/* create new blog form */
+/* create new lesson form */
 
-/* blog detail */
+/* lesson detail */
 .lesson-details article {
   width: 95%;
   padding: 40px;
+  margin-bottom: 50px;
   background-color: #f4f4f4;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -178,7 +172,8 @@
   margin: 20px 0;
 }
 
-.lesson-details button {
+.lesson-details .delete-button {
+  padding-right: 100px;
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -209,7 +204,11 @@
   margin-bottom: 0;
 }
 
-/* blog detail */
+/* lesson detail */
+.lesson-list {
+  margin-bottom: 60px;
+}
+
 
 /* not found */
 .not-found-container {
@@ -247,3 +246,223 @@
 }
 
 /* not found */
+
+/* Quick Quizz Box */
+.quizz-box h2 {
+  text-align: center;
+  background-color: #e9e1e1;
+  padding: 8px;
+  border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quik-quizz {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.correct {
+  background-color: #d4edda;
+}
+
+.incorrect {
+  background-color: #f8d7da;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.answer {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.answer input {
+  margin-right: 8px;
+}
+
+.highlight {
+  background-color: #28a745;
+  color: white;
+}
+
+.check-button {
+  background: #f1356d;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-right: 40px;
+  padding: 8px 16px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.check-button:hover {
+  background-color: #e596f2;
+}
+
+.check-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.next-question-button {
+  background: #f1356d;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border: none;
+  transition: background-color 0.3s ease;
+
+}
+
+.next-question-button:hover {
+  background-color: #e596f2;
+}
+
+.next-question-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Quick Quizz Box */
+
+/* Test Box */
+.test-box h2 {
+  text-align: left;
+}
+
+.test-corrects {
+  color: green;
+}
+
+.test-mistakes {
+  color: red;
+}
+
+/* Test Box */
+
+/* Create */
+.create-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+  background: rgba(255, 207, 211, 0.1);
+  color: #333;
+}
+
+.create-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.link-container {
+  display: flex;
+  gap: 4rem;
+  /* Adjust spacing between links */
+}
+
+.create-container a {
+  display: inline-flex;
+  background: rgba(241, 53, 109, 0.2);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border: 2px solid rgba(241, 53, 109, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.create-container a:hover {
+  background-color: rgba(241, 53, 109, 0.8);
+  color: #fff;
+}
+
+/* Create end */
+
+/* Create test form */
+.create-test {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 400px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  align-items: start;
+}
+
+.create-test-form {
+  grid-column: 1;
+  width: 100%;
+  /* Ensures both take equal width */
+  display: flex;
+  flex-direction: column;
+}
+
+.create-question-form {
+  grid-column: 2;
+  width: 100%;
+  /* Ensures both take equal width */
+  display: flex;
+  flex-direction: column;
+}
+
+.create-test-form form,
+.create-question-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-test label {
+  text-align: left;
+  display: block;
+}
+
+.create-test h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+
+.create-test input,
+.create-test textarea,
+.create-test select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.create-test button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}

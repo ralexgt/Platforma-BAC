@@ -22,6 +22,35 @@ type Lesson struct {
 	Content string
 }
 
+type QuickQuestion struct {
+	Id        int32 `xorm:"pk autoincr"`
+	Lesson_id string
+	Question  string
+	Answer1   string
+	Answer2   string
+	Answer3   string
+	Answer4   string
+	Correct   string
+}
+
+type Test struct {
+	Id          string `xorm:"pk"`
+	Title       string
+	Description string
+}
+
+type Question struct {
+	Id       int32 `xorm:"pk autoincr"`
+	Test_id  string
+	Question string
+	Answer1  string
+	Answer2  string
+	Answer3  string
+	Answer4  string
+	Correct  string
+	Hint     string
+}
+
 func CreateDBEngine() (*xorm.Engine, error) {
 	engine, err := xorm.NewEngine("sqlite3", "./platforma")
 	if err != nil {

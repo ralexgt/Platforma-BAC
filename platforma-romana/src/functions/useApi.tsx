@@ -1,8 +1,8 @@
-import { Lesson } from "../props/Props.tsx"
+import { Lesson, Question, QuickQuestion, Test } from "../props/Props.tsx"
 
 // Function to save JWT token to a cookie
-export function setCookie(name: string, value: string) {
-    const expires = new Date(Date.now() + 300 * 60 * 1000).toUTCString();
+export function setCookie(name: string, value: string, expirationInMinutes: number = 300) {
+    const expires = new Date(Date.now() + expirationInMinutes * 60 * 1000).toUTCString();
     document.cookie = `${name}=${value}; SameSite=None; secure; expires=${expires}; path=/`;
 }
 
@@ -33,12 +33,11 @@ export async function apiCall(url: string, method: string, data: any) {
     return response.json();
 }
 
-export async function fetchUser(id: any, token: any) {
-    const response = await fetch("http://127.0.0.1:8000/private/getUser", {
+export async function fetchUser(id: any) {
+    const response = await fetch("http://127.0.0.1:8000/public/getUser", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
             id: id
@@ -64,5 +63,47 @@ export async function fetchLessonDetails(id: string)  {
             id: id
         })
     });
+    return response.json();
+}
+
+export async function fetchQuickQuestions(id: string): Promise<QuickQuestion[]> {
+    const response = await fetch(`http://127.0.0.1:8000/public/getQuickQuiz/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    return response.json();
+}
+
+export async function fetchAllTests(): Promise<Test[]> {
+    const response = await fetch(`http://127.0.0.1:8000/public/getTests`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    return response.json();
+}
+
+export async function fetchTest(id: string): Promise<Test> {
+    const response = await fetch(`http://127.0.0.1:8000/public/getTest/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    
+    return response.json();
+}
+
+export async function fetchTestQuestions(id: string): Promise<Question[]> {
+    const response = await fetch(`http://127.0.0.1:8000/public/getQuestions/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    
     return response.json();
 }

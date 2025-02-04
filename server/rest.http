@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ###
 POST  http://127.0.0.1:8000/private/getUser HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzgyNjEyMTcsInVzZXJfaWQiOiI1MmFkOTQ0OC04MmQxLTVlZDktOTg4OC0zNDhkMjIzZjk1NTkifQ.BXPaVHB_mA1jvQyit2nHVjpIIzANNTnEho1v84SfipU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MTk5MzYsInVzZXJfaWQiOiI1MmFkOTQ0OC04MmQxLTVlZDktOTg4OC0zNDhkMjIzZjk1NTkifQ.nI2eykawrKh6gqolqIxcdK9Xl5F84lrNJ3tlWGIdZqA
 Content-Type: application/json
 
 {
@@ -58,4 +58,33 @@ Content-Type: application/json
 }
 
 ###
-GET http://127.0.0.1:8000/public/delete/08ff98f2-41b7-5638-9990-0cf15b36ba54 HTTP/1.1
+POST http://127.0.0.1:8000/private/newTest HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MTk5MzYsInVzZXJfaWQiOiI1MmFkOTQ0OC04MmQxLTVlZDktOTg4OC0zNDhkMjIzZjk1NTkifQ.nI2eykawrKh6gqolqIxcdK9Xl5F84lrNJ3tlWGIdZqA
+Content-Type: application/json
+
+{
+    "title": "Test 2 subiect 2",
+    "description": "Descriere test 2 2"
+}
+
+###
+GET http://127.0.0.1:8000/public/getTest/Test-subiect-2 HTTP/1.1
+
+###
+POST http://127.0.0.1:8000/private/newQuestion HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mzg2MTk5MzYsInVzZXJfaWQiOiI1MmFkOTQ0OC04MmQxLTVlZDktOTg4OC0zNDhkMjIzZjk1NTkifQ.nI2eykawrKh6gqolqIxcdK9Xl5F84lrNJ3tlWGIdZqA
+Content-Type: application/json
+
+{
+    "test_id": "Test-subiect-1",
+    "question": "Daca ninge este soare?",
+    "answer1": "Asa si?",
+    "answer2": "Io nu stiu",
+    "answer3": "Sunt sdafdsafdfaewecis",
+    "answer4": "Gata cu aceste progargstii",
+    "correct": "Io nu stiu",
+    "hint": "Ce treaba am eu?"
+}
+
+###
+DELETE http://127.0.0.1:8000/public/delete/test/Test-subiect-2

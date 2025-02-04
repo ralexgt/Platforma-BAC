@@ -6,7 +6,7 @@ const LessonList: React.FC<LessonListProps> = ({lessons, title}) => {
   const [toggleLessons, setToggleLessons] = useState(true);
 
   return (
-    <div className="blog-list">
+    <div className="lesson-list">
       <h2 className="section-title"> {title} </h2>
       <button className="lessons-toggle-btn"
         onClick={() => {
@@ -16,7 +16,7 @@ const LessonList: React.FC<LessonListProps> = ({lessons, title}) => {
       </button>
     
       { toggleLessons && lessons.map((lesson: Lesson) => (
-          <div className="blog-preview" key={lesson.Id}>
+          <div className="lesson-preview" key={lesson.Id}>
             <Link to={`/lessons/${lesson.Id}`} >
               <h2> { lesson.Title } </h2>
             </Link>

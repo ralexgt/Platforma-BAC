@@ -24,5 +24,6 @@
 ./platforma-romana/*.sw?
 
 ./server/go.sum
+./server/rest.http
 
 idei

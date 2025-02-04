@@ -1,19 +1,22 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchLessonDetails, fetchUser, getCookie } from "../functions/useApi.tsx";
+import { fetchLessonDetails, fetchQuickQuestions, fetchUser, getCookie } from "../functions/useApi.tsx";
+import QuizBox from "./QuizBox.tsx";
+import { QuickQuestion } from "../props/Props.tsx";
 
 
 const LessonDetailed = () => {
+  const { id } = useParams();
+  
   const [loggedIn, setLoggedIn] = useState(getCookie("token") ? "true" : "")
   const [userALevel, setUserALevel] = useState(0);
   const navigate = useNavigate();
-  const { id } = useParams();
+
   const [lessonTitle, setLessonTitle] = useState("");
-  const [lessonContent, setLessonContent] = useState("");
   const [lessonSubject, setLessonSubject] = useState("");
   const [lessonParagraphs, setLessonParagraphs] = useState([""]);
+  const [quizQuestions, setQuizQuestions] = useState<QuickQuestion[]>([])
   
-  // TODO EDIT for new server
   const handleDelete = () => {
     fetch(`http://127.0.0.1:8000/public/delete/${id}`, {
       "method": "DELETE"
@@ -30,8 +33,6 @@ const LessonDetailed = () => {
       if (id) {
         const response = await fetchLessonDetails(id)
         setLessonTitle(response.title);
-        setLessonContent(response.content);
-        // console.log(lessonContent);
         setLessonParagraphs(response.content.split("\n\n"));        
         setLessonSubject(response.subject);
       }
@@ -40,7 +41,7 @@ const LessonDetailed = () => {
     getLesson(id);
     
     async function getUser() {
-      const user = await fetchUser(getCookie("user"), getCookie("token"));
+      const user = await fetchUser(getCookie("user"));
       setUserALevel(user.admin);
     }
 
@@ -50,6 +51,14 @@ const LessonDetailed = () => {
     if (!loggedIn) {
       setUserALevel(0);
     }
+
+    async function getLessonQuiz() {
+      if (id) {
+        const questions = await fetchQuickQuestions(id);
+        setQuizQuestions(questions);
+      }
+    };
+    getLessonQuiz();
   }, [navigate]);
  
   return (
@@ -60,15 +69,15 @@ const LessonDetailed = () => {
         <div className="lesson-content">
           {
             lessonParagraphs.map((paragraph: string) => (
-              <p key={Math.floor(Math.random() * 150)}> {paragraph} </p>
+              <p key={Math.floor(Math.random() * 3000) + 100}> {paragraph} </p>
             ))
           }
         </div>
-        { userALevel > 0 && <button onClick={handleDelete}> Șterge lecția </button> }
+        { userALevel > 0 && <button className="delete-button" onClick={handleDelete}> Șterge lecția </button> }
       </article>
-      
+      {quizQuestions && <QuizBox quizQuestions={quizQuestions}/> }
     </div>
-  )
+  );
 }
 
 export default LessonDetailed

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"strings"
 	"time"
@@ -40,6 +39,32 @@ type GetLessonRequest struct {
 	Id string
 }
 
+type PostTestRequest struct {
+	Title       string
+	Description string
+}
+
+type PostQuestionRequest struct {
+	Test_id  string
+	Question string
+	Answer1  string
+	Answer2  string
+	Answer3  string
+	Answer4  string
+	Correct  string
+	Hint     string
+}
+
+type PostQuickQuestionRequest struct {
+	Lesson_id string
+	Question  string
+	Answer1   string
+	Answer2   string
+	Answer3   string
+	Answer4   string
+	Correct   string
+}
+
 func main() {
 	// Initialize a new Fiber app
 	app := fiber.New()
@@ -63,29 +88,6 @@ func main() {
 	}))
 	private.Get("/", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"succes": true, "path": "private"})
-	})
-
-	private.Post("/getUser", func(c *fiber.Ctx) error {
-		log.Println("Request received at private/getUser")
-		req := new(GetUserRequest)
-		if err := c.BodyParser(req); err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
-		}
-
-		if req.Id == "" {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
-		}
-
-		user := new(data.User)
-		has, _ := engine.Where("id = ?", req.Id).Desc("id").Get(user)
-		if err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
-		}
-		if !has {
-			return c.JSON(fiber.Map{"error": "Id-ul nu exista in baza de date"})
-		}
-
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{"email": user.Email, "name": user.Name, "admin": user.Admin})
 	})
 
 	private.Post("/newLesson", func(c *fiber.Ctx) error {
@@ -136,12 +138,154 @@ func main() {
 		return c.JSON(fiber.Map{"status": "added"})
 	})
 
+	private.Post("/newTest", func(c *fiber.Ctx) error {
+		log.Println("Request received at /private/newTest")
+		req := new(PostTestRequest)
+		if err := c.BodyParser(req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		if req.Title == "" || req.Description == "" {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Toate câmpurile sunt necesare"})
+		}
+
+		test := new(data.Test)
+
+		has, err := engine.Where("title = ?", req.Title).Desc("id").Get(test)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+		if has {
+			return c.JSON(fiber.Map{"error": "Test cu același nume există."})
+		}
+
+		var id string
+		id = strings.Replace(req.Title, " ", "-", -1)
+
+		// save data in database
+		test = &data.Test{
+			Id:          id,
+			Title:       req.Title,
+			Description: req.Description,
+		}
+
+		_, err = engine.Insert(test)
+
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		return c.JSON(fiber.Map{"status": "added"})
+	})
+
+	private.Post("/newQuestion", func(c *fiber.Ctx) error {
+		log.Println("Request received at /private/newQuestion")
+		req := new(PostQuestionRequest)
+		if err := c.BodyParser(req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		if req.Answer1 == "" || req.Answer2 == "" || req.Answer3 == "" || req.Answer4 == "" || req.Correct == "" || req.Hint == "" || req.Question == "" || req.Test_id == "" {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Toate câmpurile sunt necesare"})
+		}
+
+		question := new(data.Question)
+
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		// save data in database
+		question = &data.Question{
+			Test_id:  req.Test_id,
+			Question: req.Question,
+			Answer1:  req.Answer1,
+			Answer2:  req.Answer2,
+			Answer3:  req.Answer3,
+			Answer4:  req.Answer4,
+			Correct:  req.Correct,
+			Hint:     req.Hint,
+		}
+
+		_, err = engine.Insert(question)
+
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		return c.JSON(fiber.Map{"status": "added"})
+	})
+
+	private.Post("/newQuickQuestion", func(c *fiber.Ctx) error {
+		log.Println("Request received at /private/newQuickQuestion")
+		req := new(PostQuickQuestionRequest)
+		if err := c.BodyParser(req); err != nil {
+			log.Println("a")
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		if req.Answer1 == "" || req.Answer2 == "" || req.Answer3 == "" || req.Answer4 == "" || req.Correct == "" || req.Question == "" || req.Lesson_id == "" {
+			log.Println("b")
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Toate câmpurile sunt necesare"})
+		}
+
+		quickQuestion := new(data.QuickQuestion)
+
+		if err != nil {
+			log.Println(err)
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		// save data in database
+		quickQuestion = &data.QuickQuestion{
+			Lesson_id: req.Lesson_id,
+			Question:  req.Question,
+			Answer1:   req.Answer1,
+			Answer2:   req.Answer2,
+			Answer3:   req.Answer3,
+			Answer4:   req.Answer4,
+			Correct:   req.Correct,
+		}
+
+		_, err = engine.Insert(quickQuestion)
+
+		if err != nil {
+			log.Println(err)
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		return c.JSON(fiber.Map{"status": "added"})
+	})
+
 	// PRIVATE APIS END -----------------------------------------------
 
 	// PUBLIC APIS -----------------------------------------------
 	public := app.Group("/public")
 	public.Get("/", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"succes": true, "path": "public"})
+	})
+
+	public.Post("/getUser", func(c *fiber.Ctx) error {
+		log.Println("Request received at public/getUser")
+		req := new(GetUserRequest)
+		if err := c.BodyParser(req); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		if req.Id == "" {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+
+		user := new(data.User)
+		has, _ := engine.Where("id = ?", req.Id).Desc("id").Get(user)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err})
+		}
+		if !has {
+			return c.JSON(fiber.Map{"error": "Id-ul nu exista in baza de date"})
+		}
+
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{"email": user.Email, "name": user.Name, "admin": user.Admin})
 	})
 
 	public.Delete("/delete/:id", func(c *fiber.Ctx) error {
@@ -151,11 +295,24 @@ func main() {
 		// Delete user by ID
 		_, err := engine.ID(id).Delete(&data.Lesson{})
 		if err != nil {
-			fmt.Println(err)
 			return c.Status(500).SendString("Failed to delete lesson")
 		}
 
 		return c.SendString("Lesson deleted successfully")
+
+	})
+
+	public.Delete("/delete/test/:test_id", func(c *fiber.Ctx) error {
+		testID := c.Params("test_id")
+		log.Println("Request received at public/delete/" + testID)
+
+		// Delete user by ID
+		_, err := engine.ID(testID).Delete(&data.Test{})
+		if err != nil {
+			return c.Status(500).SendString("Failed to delete test")
+		}
+
+		return c.SendString("Test deleted successfully")
 
 	})
 
@@ -193,6 +350,59 @@ func main() {
 		}
 
 		return c.JSON(lessons)
+	})
+
+	public.Get("/getQuickQuiz/:lesson_id", func(c *fiber.Ctx) error {
+		lessonID := c.Params("lesson_id")
+		log.Println("Request received at /public/getQuickQuiz/" + lessonID)
+		var questions []data.QuickQuestion
+		err := engine.Where("lesson_id = ?", lessonID).Find(&questions)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Database query failed"})
+		}
+
+		return c.JSON(questions)
+	})
+
+	public.Get("/getTests", func(c *fiber.Ctx) error {
+		log.Println("Request received at /public/getTests")
+		var tests []data.Test
+		err := engine.Where("").Find(&tests)
+		if err != nil {
+			log.Println(err)
+			return c.Status(500).JSON(fiber.Map{"error": "Database query failed"})
+		}
+
+		return c.JSON(tests)
+	})
+
+	public.Get("/getTest/:test_id", func(c *fiber.Ctx) error {
+		testID := c.Params("test_id")
+		log.Println("Request received at /public/getTest/" + testID)
+
+		var test data.Test
+		has, err := engine.Where("id = ?", testID).Get(&test)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Database query failed"})
+		}
+		if !has {
+			return c.Status(500).JSON(fiber.Map{"error": "Nu exista testul in baza de date"})
+		}
+
+		return c.JSON(test)
+	})
+
+	public.Get("/getQuestions/:test_id", func(c *fiber.Ctx) error {
+		testID := c.Params("test_id")
+		log.Println("Request received at /public/getQuestions/" + testID)
+		var questions []data.Question
+
+		err := engine.Where("test_id = ?", testID).Find(&questions)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"error": "Database query failed"})
+		}
+
+		return c.JSON(questions)
 	})
 
 	public.Post("/signup", func(c *fiber.Ctx) error {

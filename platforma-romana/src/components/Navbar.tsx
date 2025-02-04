@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     setLoggedIn(getCookie("token") ? "true" : "");
     async function getUser() {
-      const user = await fetchUser(getCookie("user"), getCookie("token"));
+      const user = await fetchUser(getCookie("user"));
       setUsername(user.name);
       setUserALevel(user.admin);
     }
