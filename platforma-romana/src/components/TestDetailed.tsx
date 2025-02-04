@@ -22,6 +22,8 @@ const TestDetailed = () => {
   const [mistakes, setMistakes] = useState<number>(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [fifty, setFifty] = useState(false);
+  const [hiddenAnswers, setHiddenAnswers] = useState<Record<number, string[]>>({});
   const [showPopup, setShowPopup] = useState(false);
   
   const handleDelete = () => {
@@ -31,10 +33,43 @@ const TestDetailed = () => {
     navigate("/");
   }
   
-   const handleFiftyFifty = () => {
-     // TODO
-  };
-  
+  const handleFiftyFifty = () => {
+    if (userGold && userGold < 10) {
+      triggerPopup();
+      return;
+    }
+
+    if (!questions) return;
+
+    const currentQuestionIndex = Number(getCookie(`started-${id}`));
+    const currentQuestion = questions[currentQuestionIndex];
+
+    if (!currentQuestion) return;
+
+    const correctAnswer = currentQuestion.Correct;
+    const allAnswers = [
+      currentQuestion.Answer1,
+      currentQuestion.Answer2,
+      currentQuestion.Answer3,
+      currentQuestion.Answer4,
+    ];
+
+    // Filter out the correct answer and randomly select two incorrect ones
+    const incorrectAnswers = allAnswers.filter(ans => ans !== correctAnswer);
+    const shuffledIncorrects = incorrectAnswers.sort(() => Math.random() - 0.5);
+    const removedAnswers = shuffledIncorrects.slice(0, 2);
+
+    // Update state to hide these answers for this question
+    setHiddenAnswers(prev => ({
+      ...prev,
+      [currentQuestionIndex]: removedAnswers,
+    }));
+
+    setFifty(true);
+
+    fetchUpdateGold(userEmail, -10);
+  };  
+
    const handleShowHint = () => {
      if (userGold) {
        if (userGold < 30) {
@@ -72,6 +107,7 @@ const TestDetailed = () => {
     const nextQuestionNumber = Number(getCookie(`started-${id}`)) + 1;
     setShowAnswer(false);
     setShowHint(false);
+    setFifty(false);
     setCookie(`started-${id}`, String(nextQuestionNumber))
   }
 
@@ -167,7 +203,8 @@ const TestDetailed = () => {
             {Number(getCookie(`started-${id}`)) + 1}. {questions[Number(getCookie(`started-${id}`))].Question}
           </h3>
           <div className="answers">
-            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer1 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""}`}>
+            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer1 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""}
+              ${hiddenAnswers[Number(getCookie(`started-${id}`))]?.includes(questions[Number(getCookie(`started-${id}`))].Answer1) ? "hidden-answer" : ""}`}>
               <input 
                 type="radio" 
                 name="ans" 
@@ -177,7 +214,8 @@ const TestDetailed = () => {
               />
                 1. {`${questions[Number(getCookie(`started-${id}`))].Answer1}`} 
             </label>
-            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer2 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""}`}>
+            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer2 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""}
+              ${hiddenAnswers[Number(getCookie(`started-${id}`))]?.includes(questions[Number(getCookie(`started-${id}`))].Answer2) ? "hidden-answer" : ""}`}>
               <input 
                 type="radio" 
                 name="ans" 
@@ -187,7 +225,8 @@ const TestDetailed = () => {
               />
                 2. {`${questions[Number(getCookie(`started-${id}`))].Answer2}`} 
             </label>
-            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer3 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""}`}>
+            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer3 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""} 
+              ${hiddenAnswers[Number(getCookie(`started-${id}`))]?.includes(questions[Number(getCookie(`started-${id}`))].Answer3) ? "hidden-answer" : ""}`}>
               <input 
                 type="radio" 
                 name="ans" 
@@ -197,7 +236,8 @@ const TestDetailed = () => {
               />
                 3. {`${questions[Number(getCookie(`started-${id}`))].Answer3}`} 
             </label>
-            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer4 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""}`}>
+            <label className={`answer ${(showAnswer && questions[Number(getCookie(`started-${id}`))].Answer4 === questions[Number(getCookie(`started-${id}`))].Correct)? "correct-answer" : ""} 
+              ${hiddenAnswers[Number(getCookie(`started-${id}`))]?.includes(questions[Number(getCookie(`started-${id}`))].Answer4) ? "hidden-answer" : ""}`}>
               <input 
                 type="radio" 
                 name="ans"
@@ -229,7 +269,7 @@ const TestDetailed = () => {
        <div className="quiz-buttons">
          {showPopup && <div className="popup">Not enough gold</div>}
         <div className="badge-container">
-          <button onClick={handleFiftyFifty} className="quiz-button fifty-fifty">50/50</button>
+          <button onClick={handleFiftyFifty} disabled={fifty} className="quiz-button fifty-fifty">50/50</button>
           <span className="badge-description">10 gold</span>
         </div>
         <div className="badge-container">
