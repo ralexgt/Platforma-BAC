@@ -13,7 +13,7 @@ A platform to create your own lessons and tests. Currently it is set up with mat
 <details>
 <summary>  Developer 🙆‍♂️</summary>
 <ul>
-<il> Alex Roman </il>
+<il>- Alex Roman </il>
 </ul>
 </details>
 
@@ -41,42 +41,44 @@ a cute addition and a sense of progress for the learner.
 <h3>I chose Golang as the language for the backend</h3>
 <ul>
 <il>
-It is blazingly fast.
+- It is blazingly fast.
 </il>
 <il>
-It scales better than other options.
+- It scales better than other options.
 </il>
 <il>
-Writing *Go* feels good.
+- Writing *Go* feels good.
 </il>
+</ul>
 <h3>Fiber</h3>
-<il>Easy to start with.</il>
+<ul>
+<il>- Easy to start with.</il>
 <il>- Intuitive</il>
 </ul>
 <h3>Xorm + Sqlite</h3>
 <ul>
-<il>I used Xorm to handle the database.</il>
-<il>Sqlite was easy enough to set up and it gave me everything I need as fast as I needed it.</il>
+<il>- I used Xorm to handle the database.</il>
+<il>- Sqlite was easy enough to set up and it gave me everything I need as fast as I needed it.</il>
 </ul>
 <h3>Typescript for the frondend</h3>
 <ul>
   <il>
-Some form of static types were a must for me
+- Some form of static types were a must for me
   </il>
 </ul>
 <h3>Node</h3>
 <ul>
 <il>
-Developed ecosystem
+- Developed ecosystem
 </il>
 <il>
-More than enough documentation
+- More than enough documentation
 </il>
 </ul>
 <h3>React</h3>
 <ul>
 <il>
-Personal preference, it was my first project with React and I just wanted to try using it and see how I like it.
+- Personal preference, it was my first project with React and I just wanted to try using it and see how I like it.
 </il>
 </ul>
 </details>
