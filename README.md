@@ -13,7 +13,7 @@ A platform to create your own lessons and tests. Currently it is set up with mat
 <details>
 <summary>  Developer 🙆‍♂️</summary>
 <ul>
-<il>- Alex Roman </il>
+<li>Alex-Rareș Roman </li>
 </ul>
 </details>
 
