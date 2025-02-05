@@ -47,7 +47,7 @@ It is blazingly fast.
 It scales better than other options.
 </li>
 <li>
-Writing *Go* feels good.
+Writing <i>Go</i> feels good.
 </li>
 </ul>
 <h3>Fiber</h3>
