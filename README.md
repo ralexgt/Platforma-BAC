@@ -35,7 +35,7 @@ a cute addition and a sense of progress for the learner.
 <details>
 
 <summary>  Technologies ⚙️</summary>
-**I chose Golang as the language for the backend**
+<h3>I chose Golang as the language for the backend</h3>
 - It is blazingly fast.
 - It scales better than other options.
 - Writing *Go* feels good.
@@ -46,12 +46,12 @@ a cute addition and a sense of progress for the learner.
 - I used Xorm to handle the database.
 - Sqlite was easy enough to set up and it gave me everything I need as fast as I needed it.
 
-**Typescript for the frondend**
+<h3>Typescript for the frondend</h3>
 - Some form of static types were a must for me
-- **Node**
+<h3>Node</h3>
 - Developed ecosystem
 - More than enough documentation
-- **React**
+<h3>React</h3>
 - Personal preference, it was my first project with React and I just wanted to try using it and see how I like it.
 
 </details>
