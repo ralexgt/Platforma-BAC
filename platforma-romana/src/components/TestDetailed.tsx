@@ -34,7 +34,7 @@ const TestDetailed = () => {
   }
   
   const handleFiftyFifty = () => {
-    if (userGold && userGold < 10) {
+    if (userGold != undefined && userGold != null && userGold < 10) {
       triggerPopup();
       return;
     }
@@ -68,20 +68,26 @@ const TestDetailed = () => {
     setFifty(true);
 
     fetchUpdateGold(userEmail, -10);
+     if (userGold != undefined && userGold != null) {
+      setUserGold(userGold - 10);
+     }
   };  
 
    const handleShowHint = () => {
-     if (userGold) {
-       if (userGold < 30) {
+     if (userGold != undefined && userGold != null) {
+       if (userGold < 20) {
          triggerPopup();
          return;
        }
      }
      setShowHint(true);
      fetchUpdateGold(userEmail, -20);
+     if (userGold) {
+      setUserGold(userGold - 20);
+     }
   };
    const handleShowAnswer = () => {
-     if (userGold) {
+     if (userGold != undefined && userGold != null) {
        if (userGold < 30) {
          triggerPopup();
          return;
@@ -89,6 +95,9 @@ const TestDetailed = () => {
      }
      setShowAnswer(true);
      fetchUpdateGold(userEmail, -30);
+     if (userGold) {
+      setUserGold(userGold - 30);
+     }
   };
 
   const startTest = () => {
