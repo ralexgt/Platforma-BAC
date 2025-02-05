@@ -26,7 +26,7 @@ I started this project to develop a web project with Go on the backend and Types
 the server to create, update and delete users for the authentification. After having the users down, I wanted to be able to add lessons interactively through the
 platform. Similarly I added tests. Quick questions for each lesson: after creating a lesson, you can publish as many quick questions in relation with the said lesson
 that will appear directly under the lesson and will be randomized for the user to practice their knowledge on the subject. Using the same concept, I made it so you
-have to create a test first, then you can add questions and select to with test they should be related to. This will add the question to the test. The last and
+have to create a test first, then you can add questions and select the test they are related to. This will add the question to the test. The last and
 I think the most fun part, the gamification. Quick questions will give you experience points and gold and passing tests will also give you rewards. The experience
 will place the users higher on the global leaderboard and the gold can be spent for advantages during tests. Lastly, I implemented badges for the user's profile, as
 a cute addition and a sense of progress for the learner.
