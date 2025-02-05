@@ -40,46 +40,46 @@ a cute addition and a sense of progress for the learner.
 <summary>  Technologies ⚙️</summary>
 <h3>I chose Golang as the language for the backend</h3>
 <ul>
-<il>
-- It is blazingly fast.
-</il>
-<il>
-- It scales better than other options.
-</il>
-<il>
-- Writing *Go* feels good.
-</il>
+<li>
+It is blazingly fast.
+</li>
+<li>
+It scales better than other options.
+</li>
+<li>
+Writing *Go* feels good.
+</li>
 </ul>
 <h3>Fiber</h3>
 <ul>
-<il>- Easy to start with.</il>
-<il>- Intuitive</il>
+<li>Easy to start with.</li>
+<li>Intuitive</li>
 </ul>
 <h3>Xorm + Sqlite</h3>
 <ul>
-<il>- I used Xorm to handle the database.</il>
-<il>- Sqlite was easy enough to set up and it gave me everything I need as fast as I needed it.</il>
+<li>I used Xorm to handle the database.</li>
+<li>Sqlite was easy enough to set up and it gave me everything I need as fast as I needed it.</li>
 </ul>
 <h3>Typescript for the frondend</h3>
 <ul>
-  <il>
-- Some form of static types were a must for me
-  </il>
+  <li>
+Some form of static types were a must for me
+  </li>
 </ul>
 <h3>Node</h3>
 <ul>
-<il>
-- Developed ecosystem
-</il>
-<il>
-- More than enough documentation
-</il>
+<li>
+Developed ecosystem
+</li>
+<li>
+More than enough documentation
+</li>
 </ul>
 <h3>React</h3>
 <ul>
-<il>
-- Personal preference, it was my first project with React and I just wanted to try using it and see how I like it.
-</il>
+<li>
+Personal preference, it was my first project with React and I just wanted to try using it and see how I like it.
+</li>
 </ul>
 </details>
 </br>
