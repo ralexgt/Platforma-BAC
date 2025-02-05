@@ -17,6 +17,12 @@ export function deleteCookie(name: string) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
+// Delete a cookie
+export function deleteAllCookies() {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+}
+
+
 // Function to make API call
 export async function apiCall(url: string, method: string, data: any) {
     const response = await fetch(url, {

@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import { deleteCookie } from "../functions/useApi.tsx";
+import { deleteAllCookies} from "../functions/useApi.tsx";
 import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    deleteCookie("token");
-    deleteCookie("user");
+    deleteAllCookies();
     navigate("/");
   }, [])
     
