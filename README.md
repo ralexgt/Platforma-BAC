@@ -3,6 +3,7 @@
 
 <details>
 <summary>  Project description 📚</summary>
+</br>
 A platform to create your own lessons and tests. Currently it is set up with materials for the romanian Bacalaureat exam at the Romanian language.
 </details>
 
@@ -10,6 +11,7 @@ A platform to create your own lessons and tests. Currently it is set up with mat
 
 <details>
 <summary>  Developer 🙆‍♂️</summary>
+</br>
 - Alex Roman
 </details>
 
@@ -17,7 +19,8 @@ A platform to create your own lessons and tests. Currently it is set up with mat
 
 <details>
 <summary>  Project implementation 🔧</summary>
-I started this project to develop a web project with Go on the backend and Typescript + React on the frontend. I started by implementing a few api's on
+</br>
+I started this project to develop a web project with Go on the backend and Typescript + React on the frontend. The first step was implementing a few api's on
 the server to create, update and delete users for the authentification. After having the users down, I wanted to be able to add lessons interactively through the
 platform. Similarly I added tests. Quick questions for each lesson: after creating a lesson, you can publish as many quick questions in relation with the said lesson
 that will appear directly under the lesson and will be randomized for the user to practice their knowledge on the subject. Using the same concept, I made it so you
@@ -30,32 +33,29 @@ a cute addition and a sense of progress for the learner.
 </br>
 
 <details>
-<summary>  Technologies ⚙️</summary>
 
+<summary>  Technologies ⚙️</summary>
+</br>
 **I chose Golang as the language for the backend**
 - It is blazingly fast.
 - It scales better than other options.
 - Writing *Go* feels good.
-**Fiber**
+- **Fiber**
 - Easy to start with.
 - Intuitive
-**Xorm + Sqlite**
+- **Xorm + Sqlite**
 - I used Xorm to handle the database.
 - Sqlite was easy enough to set up and it gave me everything I need as fast as I needed it.
 
 **Typescript for the frondend**
 - Some form of static types were a must for me
-**Node**
+- **Node**
 - Developed ecosystem
 - More than enough documentation
-**React**
+- **React**
 - Personal preference, it was my first project with React and I just wanted to try using it and see how I like it.
 
 </details>
-
-</br>
-
-<details>
 </br>
 
 <details>
@@ -63,18 +63,18 @@ a cute addition and a sense of progress for the learner.
   <blockquote>
   <details><summary>&nbsp;&nbsp;&nbsp;&nbsp;Screenshots: </summary>
 
-  <img src="media/lesson1.png" width="200" height="300">
+  <img src="media/lesson-1.png" width="200" height="200">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="media/lesson2.png" width="200" height="300">
+  <img src="media/lesson-2.png" width="200" height="200">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="media/test-1.png" width="200" height="300">
+  <img src="media/test-1.png" width="200" height="200">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </br>
-  <img src="media/test-2.png" width="200" height="300">
+  <img src="media/test-2.png" width="200" height="200">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="media/create.png" width="200" height="300">
+  <img src="media/create.png" width="200" height="200">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="media/leaderboard.png" width="200" height="300">
+  <img src="media/leaderboard.png" width="200" height="200">
 
   </details>
   </blockquote>
@@ -83,7 +83,7 @@ a cute addition and a sense of progress for the learner.
   <blockquote>
   <details><summary>&nbsp;&nbsp;&nbsp;&nbsp;Code: </summary>
 
-[Code file](https://github.com/ralexgt/Platforma-BAC/tree/main/server) - Server
+[Code file](https://github.com/ralexgt/Platforma-BAC/tree/main/server) - Server </br>
 [Code file](https://github.com/ralexgt/Platforma-BAC/tree/main/platforma-romana) - UI
 
   </details>
